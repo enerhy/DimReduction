@@ -29,6 +29,18 @@ X_train = pca.fit_transform(X_train)
 X_test = pca.transform(X_test)
 explained_variance = pca.explained_variance_ratio_
 
+#We can use this function to decide, where to cut
+    P = []
+    for p in pca.explained_variance_ratio_:
+        if len(P) == 0:
+            P.append(p)
+        else:
+            P.append(p + P[-1])
+    plt.plot(P)
+    plt.show()
+    
+    
+
 
 # Fitting Logistic Regression to the Training set
 from sklearn.linear_model import LogisticRegression
